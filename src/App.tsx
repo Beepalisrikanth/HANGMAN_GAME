@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 import HangMan from './hangman/HangMan'
-// import KeyBoard from './keyboard/KeyBoard'
 import Word from './word/Word'
 import DigitalKeyBoard from './DigitalKeyBoard/DigitalKeyBoard'
+
+import w1 from "./assets/male-voice-cheer-victory.wav"
+import w2 from "./assets/male-voice-cheer.wav"
+import l1 from "./assets/sad-game-over.wav"
 
 
 
@@ -68,11 +71,12 @@ function App() {
     console.log("loss", loos)
 
     if (winner) {
-      setResultMsg(<div className='winwin'>congrulatons</div>)
+      setResultMsg(<div className='winwin'>congrulaton <audio src={w1} autoPlay/></div>)
+      
       setT(true)
     }
     else if (loos) {
-      setResultMsg(<div className='winwin'>you loss try again</div>)
+      setResultMsg(<div className='winwin'>you loss try again<audio src={l1} autoPlay/></div>)
       setT(true)
     }
     else {
