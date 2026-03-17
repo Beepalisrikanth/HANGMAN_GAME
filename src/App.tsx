@@ -5,7 +5,7 @@ import Word from './word/Word'
 import DigitalKeyBoard from './DigitalKeyBoard/DigitalKeyBoard'
 
 import w1 from "./assets/male-voice-cheer-victory.wav"
-import w2 from "./assets/male-voice-cheer.wav"
+// import w2 from "./assets/male-voice-cheer.wav"
 import l1 from "./assets/sad-game-over.wav"
 
 
