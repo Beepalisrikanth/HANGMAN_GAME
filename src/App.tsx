@@ -9,12 +9,16 @@ import DigitalKeyBoard from './DigitalKeyBoard/DigitalKeyBoard'
 
 function App() {
 
-  const words = ["ORANGE","MANGO","GRAPES","PAPAYA","PINEAPPLE","COMPUTER","KEYBOARD","MONITOR","PRINTER","MOUSE","PYTHON","JAVASCRIPT","REACT","NODE","EXPRESS","DATABASE","SERVER","CLIENT","NETWORK","SECURITY","CLOUD","DOCKER","KUBERNETES","ALGORITHM","FUNCTION","VARIABLE","OBJECT","ARRAY","STRING","BOOLEAN","NUMBER","INTEGER","FLOAT","DOUBLE","CHARACTER","PROGRAM","DEVELOPER","ENGINEER","DESIGNER","ANALYST","PROJECT","MANAGER","SYSTEM","SOFTWARE","HARDWARE","INTERNET","WEBSITE","APPLICATION","PLATFORM","SERVICE"]
+  const words = ["ORANGE", "MANGO", "GRAPES", "PAPAYA", "PINEAPPLE", "COMPUTER", "KEYBOARD", "MONITOR", "PRINTER", "MOUSE", "PYTHON", "JAVASCRIPT", "REACT", "NODE", "EXPRESS", "DATABASE", "SERVER", "CLIENT", "NETWORK", "SECURITY", "CLOUD", "DOCKER", "KUBERNETES", "ALGORITHM", "FUNCTION", "VARIABLE", "OBJECT", "ARRAY", "STRING", "BOOLEAN", "NUMBER", "INTEGER", "FLOAT", "DOUBLE", "CHARACTER", "PROGRAM", "DEVELOPER", "ENGINEER", "DESIGNER", "ANALYST", "PROJECT", "MANAGER", "SYSTEM", "SOFTWARE", "HARDWARE", "INTERNET", "WEBSITE", "APPLICATION", "PLATFORM", "SERVICE"]
 
-  const [WordToGuess, setWordToGuess] = useState(() => (
-    words[Math.floor(Math.random() * words.length)]
-  )
-  );
+  const [WordToGuess, setWordToGuess] = useState(words[Math.floor(Math.random() * words.length)]);
+
+  const resetGame = () => {
+    const randomWord = words[Math.floor(Math.random() * words.length)]
+    setWordToGuess(randomWord)
+    setGuessedLetters([])
+    setT(false)
+  }
 
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
@@ -31,9 +35,9 @@ function App() {
 
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
-      const key = e.key
+      const key = e.key.toUpperCase()
 
-      if (!key.match(/^[a-z]$/)) { return }
+      if (!key.match(/^[A-Z]$/)) { return }
       console.log(key)
 
       e.preventDefault()
@@ -53,7 +57,7 @@ function App() {
     WordToGuess.includes(letter)
   )
 
-  const [t,setT]=useState(false)
+  const [t, setT] = useState(false)
   const [resultMsg, setResultMsg] = useState<React.ReactNode>("welcome to Hangman ")
 
   const resultDiaplay = () => {
@@ -96,9 +100,9 @@ function App() {
         <p className='titleTXT'>{resultMsg}</p>
 
         <HangMan numberOfGuesses={inCorrectLetters.length} />
-        <Word guessLetters={guessedLetters} wordToGuess={WordToGuess} t={t}/>
+        <Word guessLetters={guessedLetters} wordToGuess={WordToGuess} t={t} />
         <DigitalKeyBoard addGuessLetter={addGuessLetter} guessedLetters={guessedLetters} wordTOGuess={WordToGuess} inCorrectLetters={inCorrectLetters} correctLetters={correctLetters} />
-        {/* <KeyBoard letter={letter}/> */}
+        <button onClick={resetGame} className='reset'>Restart</button>
       </div>
     </div>
   )
