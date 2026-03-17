@@ -1,0 +1,25 @@
+.WORD{
+    width: 100%;
+    font-size: 2em;
+    text-align: center;
+    margin: 0.5em auto;
+
+    /* background-color: aqua; */
+    /* display: flex;
+    flex-wrap: wrap; */
+    text-transform: uppercase;
+    font-family: monospace;
+    font-weight: bold;
+}
+
+.letter{
+    padding: 3px;
+    /* background-color: rgb(103, 74, 36); */
+    border-bottom: 0.1em solid black;
+    margin: 2px;
+}
+
+/* .letter2{
+    
+} */
+
