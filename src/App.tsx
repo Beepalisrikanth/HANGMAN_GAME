@@ -17,6 +17,7 @@ function App() {
 
   const [WordToGuess, setWordToGuess] = useState(words[Math.floor(Math.random() * words.length)]);
   const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+  const [wonGame,setWonGame] = useState<boolean>(false)
 
 
   const resetGame = () => {
@@ -24,6 +25,7 @@ function App() {
     setWordToGuess(randomWord)
     setGuessedLetters([])
     setT(false)
+    setWonGame(false)
   }
 
   function addGuessLetter(letter: string) {
@@ -59,12 +61,15 @@ function App() {
     const winner = WordToGuess.split("").every(l => correctLetters.includes(l))
     const loos = inCorrectLetters.length >= 6
     if (winner) {
-      setResultMsg(<div className='winwin' style={{ color: "green" }}>🎊Congratulations🎊<audio src={w1} autoPlay /></div>)
+      setResultMsg(<div className='winwin' >🎊Congratulations🎊<audio src={w1} autoPlay /></div>)
       setT(true)
+      setWonGame(true)
+  
     }
     else if (loos) {
-      setResultMsg(<div className='winwin' style={{ color: "red" }}>you loss try again<audio src={l1} autoPlay /></div>)
+      setResultMsg(<div className='winwin' >you loss try again<audio src={l1} autoPlay /></div>)
       setT(true)
+      setWonGame(false)
     }
     else {
       setResultMsg("keep guessing")
@@ -75,6 +80,7 @@ function App() {
 
   useEffect(() => {
     resultDiaplay()
+    setWonGame(false)
   }, [guessedLetters])
 
   return (
@@ -84,7 +90,7 @@ function App() {
         <section>
 
         <p className='title'>HangMan Game</p>
-        <div className='titleTXT'>{resultMsg}</div>
+        <div className='titleTXT' >{resultMsg}</div>
 
         <HangMan numberOfGuesses={inCorrectLetters.length} />
         <Word guessLetters={guessedLetters} wordToGuess={WordToGuess} t={t} />

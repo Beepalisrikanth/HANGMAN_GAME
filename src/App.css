@@ -1,5 +1,5 @@
 body{
-  background: url(https://static.vecteezy.com/system/resources/previews/006/849/610/non_2x/abstract-background-with-soft-gradient-color-and-dynamic-shadow-on-background-background-for-wallpaper-eps-10-free-vector.jpg);
+  background: url(https://img.freepik.com/premium-vector/abstract-halftone-background_600161-164.jpg);
   display: flex;
   height: 100vh;
   width: 100vw;
@@ -24,12 +24,13 @@ body{
   padding: 2em;
   margin: auto;
   width: 100%;
-  background-color: rgba(28, 16, 170, 0.3);
+  background-color: rgba(251, 251, 224, 0.3);
 }
 
 .title{
   text-align: center;
   font-size: 2.0em;
+
 
 }
 .titleTXT{
@@ -43,11 +44,14 @@ body{
 }
 
 .winwin{
-  color:green;
+  color:rgb(251, 251, 251);
+  background-color: green;
+  
 }
 
 .losLos{
-  color:red;
+  color:rgb(250, 250, 250);
+  background-color: red;
 }
 
 .reset{

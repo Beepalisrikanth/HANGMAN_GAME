@@ -34,12 +34,13 @@
 
 .Eltr:hover:not(:disabled),
 .Eltr:focus:not(:disabled){
-    background-color: blueviolet;
+    background-color: rgb(246, 132, 18);
 }
 
 
 .Eltr.active{
-    background-color: brown;
+    background-color: rgb(243, 4, 4);
+    color: whitesmoke;
 }
 
 .Eltr.inactive{

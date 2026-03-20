@@ -28,7 +28,7 @@ const HintsComponent = ({ WordToGuess }: props) => {
             console.log(e)
         }
     }
-
+    
     const hintsRevel = () => {
         const newClove = dataContent?.[0]?.meanings?.[0]?.definitions?.[cloveNumber]?.definition
         if(dataContent?.[0]?.word === WordToGuess.toLowerCase()){
@@ -39,6 +39,7 @@ const HintsComponent = ({ WordToGuess }: props) => {
                 setCorrectIndex(updateHints.length - 1)
                 setCloveNumber(prev => prev + 1)
                 // console.log(dataContent?.[0]?.meanings?.[0]?.definitions?.length, currentIndex+2)
+                console.log(dataContent?.[0]?.meanings?.[0]?.definitions?.length,currentIndex+2,hintsSet.length+1)
             }
             setHintStatus(true)
         }
@@ -83,7 +84,7 @@ const HintsComponent = ({ WordToGuess }: props) => {
             }
             <div className="buttonSection">
                 <button onClick={previousHint} className="hintBtn" style={{opacity:(currentIndex > 0)?1:0.2}}>previous</button>
-                <button onClick={hintsRevel} className="hintBtn" style={{opacity:(dataContent?.[0]?.meanings?.[0]?.definitions?.length===currentIndex+2)?0.2:1}} >hints</button>
+                <button onClick={hintsRevel} className="hintBtn" style={{opacity:(dataContent?.[0]?.meanings?.[0]?.definitions?.length===hintsSet.length)?0.2:1}} >hints</button>
                 <button onClick={nextHint} className="hintBtn" style={{opacity:(currentIndex < hintsSet.length - 1)?1:0.2}}>next</button>
             </div>
         </div>

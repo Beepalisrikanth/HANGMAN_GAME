@@ -12,13 +12,19 @@
 }
 
 .hintBtn{
-    background-color: #5959c6;
+    background-color: hwb(32 8% 4%);
     color: white;
     padding: 0.1em 0.4em;
     border-radius: 2em;
     width: 25%;
     border: none;
-    box-shadow: 0px 0px 10px 1px whitesmoke;
+    border: 1px solid red;
+    box-shadow: 0px 0px 10px 1px rgb(255, 8, 8);
+}
+.hintBtn:hover{
+    opacity: 0.5;
+    background-color: rgb(255, 217, 0);
+    color: red;
 }
 .hintSection{
     box-shadow: 0px 0px 5px 1px white;
