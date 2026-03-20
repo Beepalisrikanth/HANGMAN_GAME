@@ -1,0 +1,36 @@
+.outerHC{
+    width: 90%;
+    margin: 0.3em auto;
+    /* background-color: bisque; */
+    padding: 0em;
+}
+.buttonSection{
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 1em ;
+    margin-top: 0.5em;
+}
+
+.hintBtn{
+    background-color: #5959c6;
+    color: white;
+    padding: 0.1em 0.4em;
+    border-radius: 2em;
+    width: 25%;
+    border: none;
+    box-shadow: 0px 0px 10px 1px whitesmoke;
+}
+.hintSection{
+    box-shadow: 0px 0px 5px 1px white;
+    border-radius: 2em;
+    padding: 0.2em 1em ;
+}
+
+.hintNumber{
+    padding: 2px;
+    display: flex; 
+}
+
+.hint{
+    padding-left: 5px;
+}

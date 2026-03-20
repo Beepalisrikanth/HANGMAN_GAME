@@ -1,20 +1,23 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+
 import HangMan from './hangman/HangMan'
 import Word from './word/Word'
 import DigitalKeyBoard from './DigitalKeyBoard/DigitalKeyBoard'
+import HintsComponent from './HintsComponent/HintsComponent'
 
 import w1 from "./assets/male-voice-cheer-victory.wav"
-// import w2 from "./assets/male-voice-cheer.wav"
 import l1 from "./assets/sad-game-over.wav"
 
-
+import { words } from "./words"
+import './App.css'
+import NavBar from './NavBar/NavBar'
+import Footer from './Footer/Footer'
 
 function App() {
 
-  const words = ["ORANGE", "MANGO", "GRAPES", "PAPAYA", "PINEAPPLE", "COMPUTER", "KEYBOARD", "MONITOR", "PRINTER", "MOUSE", "PYTHON", "JAVASCRIPT", "REACT", "NODE", "EXPRESS", "DATABASE", "SERVER", "CLIENT", "NETWORK", "SECURITY", "CLOUD", "DOCKER", "KUBERNETES", "ALGORITHM", "FUNCTION", "VARIABLE", "OBJECT", "ARRAY", "STRING", "BOOLEAN", "NUMBER", "INTEGER", "FLOAT", "DOUBLE", "CHARACTER", "PROGRAM", "DEVELOPER", "ENGINEER", "DESIGNER", "ANALYST", "PROJECT", "MANAGER", "SYSTEM", "SOFTWARE", "HARDWARE", "INTERNET", "WEBSITE", "APPLICATION", "PLATFORM", "SERVICE"]
-
   const [WordToGuess, setWordToGuess] = useState(words[Math.floor(Math.random() * words.length)]);
+  const [guessedLetters, setGuessedLetters] = useState<string[]>([])
+
 
   const resetGame = () => {
     const randomWord = words[Math.floor(Math.random() * words.length)]
@@ -23,37 +26,26 @@ function App() {
     setT(false)
   }
 
-
-  const [guessedLetters, setGuessedLetters] = useState<string[]>([])
-
   function addGuessLetter(letter: string) {
     if (guessedLetters.includes(letter)) return
-
     setGuessedLetters(currentLetters => [...currentLetters, letter])
   }
-
-
 
   const inCorrectLetters = guessedLetters.filter((letter) => !WordToGuess.includes(letter))
 
   useEffect(() => {
+    // resultDiaplay()
     const handler = (e: KeyboardEvent) => {
       const key = e.key.toUpperCase()
-
       if (!key.match(/^[A-Z]$/)) { return }
-      console.log(key)
-
       e.preventDefault()
       addGuessLetter(key)
-
-
     }
     document.addEventListener("keypress", handler)
 
     return () => {
       document.removeEventListener("keypress", handler)
     }
-
   }, [])
 
   const correctLetters = guessedLetters.filter(letter =>
@@ -66,17 +58,12 @@ function App() {
   const resultDiaplay = () => {
     const winner = WordToGuess.split("").every(l => correctLetters.includes(l))
     const loos = inCorrectLetters.length >= 6
-
-    console.log("win", winner)
-    console.log("loss", loos)
-
     if (winner) {
-      setResultMsg(<div className='winwin'>congrulaton <audio src={w1} autoPlay/></div>)
-      
+      setResultMsg(<div className='winwin' style={{ color: "green" }}>🎊Congratulations🎊<audio src={w1} autoPlay /></div>)
       setT(true)
     }
     else if (loos) {
-      setResultMsg(<div className='winwin'>you loss try again<audio src={l1} autoPlay/></div>)
+      setResultMsg(<div className='winwin' style={{ color: "red" }}>you loss try again<audio src={l1} autoPlay /></div>)
       setT(true)
     }
     else {
@@ -84,29 +71,29 @@ function App() {
     }
     return resultMsg
   }
+
+
   useEffect(() => {
     resultDiaplay()
   }, [guessedLetters])
 
-
-
-  console.log("correct", correctLetters)
-  console.log("guessedLetters", guessedLetters)
-  console.log("WordToGuess", WordToGuess)
-  console.log("inCorrectLetters", inCorrectLetters)
-  console.log(WordToGuess.split("").every(l => correctLetters.includes(l)))
-  // console.log("addGuessLetter",addGuessLetter)
-
   return (
     <div className='outerBox' >
       <div className='innerBox'>
+        <NavBar/>
+        <section>
+
         <p className='title'>HangMan Game</p>
-        <p className='titleTXT'>{resultMsg}</p>
+        <div className='titleTXT'>{resultMsg}</div>
 
         <HangMan numberOfGuesses={inCorrectLetters.length} />
         <Word guessLetters={guessedLetters} wordToGuess={WordToGuess} t={t} />
         <DigitalKeyBoard addGuessLetter={addGuessLetter} guessedLetters={guessedLetters} wordTOGuess={WordToGuess} inCorrectLetters={inCorrectLetters} correctLetters={correctLetters} />
+        <HintsComponent WordToGuess={WordToGuess} />
         <button onClick={resetGame} className='reset'>Restart</button>
+        {/* {JSON.stringify(hintsData)} */}
+        </section>
+        <Footer/>
       </div>
     </div>
   )

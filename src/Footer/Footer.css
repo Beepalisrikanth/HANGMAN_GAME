@@ -1,0 +1,20 @@
+.outerFooter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 5px;
+    position: fixed;
+    width: 100vw;
+    left: 0;
+    bottom: 0;
+    
+}
+
+.innerFooter{
+    /* background-color: aqua; */
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

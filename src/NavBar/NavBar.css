@@ -1,0 +1,44 @@
+.outerNavBar{
+    background-color: azure;
+    width: 100vw;
+    position: fixed;
+    left: 0;
+    top:0;
+    z-index: 1000;
+    
+}
+
+.innerNavBar{
+    background-color: beige;
+    display: flex;
+    justify-content: space-between;
+    /* align-items: center; */
+    padding: 0.2em 0.5em;
+}
+
+.leftNav{
+     background-color: beige;
+}
+.rightNav{
+    display: flex;
+    align-items: center;
+     background-color: beige;
+}
+
+#inputSearch{
+    text-align: center;
+    padding: 5px;
+    border-radius: 7px;
+    border: 1px solid rgb(27, 2, 2);
+    width: 7em;
+    background-color: beige;
+    font-size: 1em;
+}
+
+ 
+img{
+    height: 3em;
+    padding: 0em 0.5em;
+    background-color: beige;
+    
+}
