@@ -64,7 +64,7 @@ function App() {
   
     }
     else if (loos) {
-      setResultMsg(<div className='winwin' >you loss try again<audio src={l1} autoPlay /></div>)
+      setResultMsg(<div className='losLos' >you loss try again<audio src={l1} autoPlay /></div>)
       setT(true)
 
     }
